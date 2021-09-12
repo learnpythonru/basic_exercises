@@ -1,3 +1,16 @@
+
+
+# формирование словаря вида {Имя:счетчик} вынес в отдельную функцию
+def name_in_class(input_students: list):
+    name_count = {}
+    for student in input_students:
+        check_name_count = name_count.get(student['first_name'])
+        if check_name_count is None:
+            name_count[student['first_name']] = 1
+        else:
+            name_count[student['first_name']] += 1
+    return name_count
+
 # Задание 1
 # Дан список учеников, нужно посчитать количество повторений каждого имени ученика
 # Пример вывода:
@@ -12,21 +25,43 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+
+def studens_counts(input_students: list):
+    name_count = name_in_class(input_students)
+    for name in name_count:
+        print(name, name_count[name])
+
+
+studens_counts(students)
 
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
 # Пример вывода:
 # Самое частое имя среди учеников: Маша
+
 students = [
     {'first_name': 'Вася'},
+    {'first_name': 'Петя'},
     {'first_name': 'Петя'},
     {'first_name': 'Маша'},
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+
+def most_often_name(input_students: list):
+    """
+    Функция возвращает список наиболее популярных имен
+    """
+    name_count = name_in_class(input_students)
+    max_count = max(name_count.values())
+    # на случай если несколько имен с одинаковым счетчиком
+    often_name = [student for student in name_count if name_count[student] == max_count]
+
+    return often_name
+
+
+print(f'Самое популярное имя среди учеников: {", ".join(most_often_name(students))}')  # простая распаковка в f-строке неработает
 
 
 # Задание 3
@@ -49,9 +84,26 @@ school_students = [
         {'first_name': 'Петя'},
         {'first_name': 'Женя'},
         {'first_name': 'Саша'},
+        {'first_name': 'Саша'}
     ],
 ]
-# ???
+
+
+def often_name_each_class(input_school_class):
+    """
+    Функция возвращает словарь вида {Номер класса:популярные имена}
+    """
+    class_count = 0
+    name_each_class = {}
+    for school_class in input_school_class:
+        class_count += 1
+        name_each_class[class_count] = most_often_name(school_class)
+    return name_each_class
+
+
+class_and_name = often_name_each_class(school_students)
+for school_class in class_and_name:
+    print(f'Самое частое имя в классе {str(school_class)}: {", ".join(class_and_name[school_class])}')
 
 
 # Задание 4
