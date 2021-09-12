@@ -3,6 +3,8 @@
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 # ???
+for name in names:
+    print(name)
 
 
 # Задание 2
@@ -13,7 +15,8 @@ names = ['Оля', 'Петя', 'Вася', 'Маша']
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 # ???
-
+for name in names:
+    print(f'{name}: {len(name)}')
 
 # Задание 3
 # Необходимо вывести имена всех учеников из списка, рядом с именем вывести пол ученика
@@ -26,6 +29,14 @@ is_male = {
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 # ???
+for name in is_male:
+    if is_male[name] == False:
+        print(f'{name}: Female')
+    else:
+        print(f'{name}: Male')
+
+for name in is_male:
+    print(f'{name}: {"Male" if is_male[name] == True else "Female"}')
 
 
 # Задание 4
@@ -41,7 +52,9 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
 ]
 # ???
-
+print(len(groups))
+for idx, group in enumerate(groups):
+    print(f'группа {idx}: {len(group)}')
 
 # Задание 5
 # Для каждой пары учеников нужно с новой строки перечислить учеников, которые в неё входят
@@ -55,3 +68,6 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
 # ???
+
+for idx, group in enumerate(groups): 
+    print(f'группа {idx}: {", ".join(group)}')
