@@ -1,7 +1,9 @@
 
 
-# формирование словаря вида {Имя:счетчик} вынес в отдельную функцию
 def name_in_class(input_students: list):
+    """
+    Функция возвращает словарь вида {Имя:счетчик}
+    """
     name_count = {}
     for student in input_students:
         check_name_count = name_count.get(student['first_name'])
@@ -124,7 +126,18 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
+def gender_in_class(input_school_class, input_gender):
+    
+    class_boys_girls = {}
+    # формируем список студентов в классе
+    names = []
+    for school_class in input_school_class:
+        for students in school_class['students']:
+            names.append(students['first_name'])
+    print(names)
+
+gender_in_class(school, is_male)
+
 
 
 # Задание 5
