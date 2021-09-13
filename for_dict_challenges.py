@@ -1,14 +1,14 @@
-from typing import Any, Dict, List
+from typing import Any, List
 
 
 def generate_name_list(input_lst: List[Any]) -> list:
     return [student['first_name'] for student in input_lst if 'first_name' in student]
 
 
-def get_max_count_name(input_lst: List[Any]) -> str:
+def get_max_count_name(input_lst: List[Any]) -> int:
     names = generate_name_list(input_lst)
-    count_names: Dict[str, Any] = {name: names.count(name) for name in set(names)}
-    return max(count_names, key=count_names.get())
+    count_names: dict = {name: names.count(name) for name in set(names)}
+    return max(count_names, key=count_names.get)
 
 
 def get_gender_count(input_lst: list) -> dict:
@@ -47,7 +47,7 @@ for name in set(names):
 
 
 # Задание 2
-# Дан список учеников, нужно вывести самое часто повторящееся имя
+# Дан список учеников, нужно вывести самое часто повторяющееся имя
 # Пример вывода:
 # Самое частое имя среди учеников: Маша
 students = [
@@ -122,28 +122,28 @@ for cls in school:
 # # Больше всего мальчиков в классе 3c
 # # Больше всего девочек в классе 2a
 
-# school = [
-#     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
-#     {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
-# ]
-# is_male = {
-#     'Маша': False,
-#     'Оля': False,
-#     'Олег': True,
-#     'Миша': True,
-# }
+school = [
+   {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+   {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
+]
 
+is_male = {
+   'Маша': False,
+   'Оля': False,
+   'Олег': True,
+   'Миша': True,
+}
 
-# count_array = []
-# for cls in school:
-#   if not 'students' in cls.keys():
-#     continue
-#   gender_dict = get_gender_count(cls['students'])
-#   gender_dict['class'] = cls['class']
-#   count_array.append(gender_dict)
+count_array = []
+for cls in school:
+    if not ('students' in cls.keys()):
+        continue
+    gender_dict = get_gender_count(cls['students'])
+    gender_dict['class'] = cls['class']
+    count_array.append(gender_dict)
 
-# maxMaleElem = max(count_array, key=lambda x:x['male'])
-# maxFemaleElem = max(count_array, key=lambda x:x['female'])
+    max_male_elem = max(count_array, key=lambda x: x['male'])
+    max_female_elem = max(count_array, key=lambda x: x['female'])
 
-# print(f"Больше всего мальчиков в классе {maxMaleElem['class']}")
-# print(f"Больше всего девочек в классе {maxFemaleElem['class']}")
+    print(f"Больше всего мальчиков в классе {max_male_elem['class']}")
+    print(f"Больше всего девочек в классе {max_female_elem['class']}")
