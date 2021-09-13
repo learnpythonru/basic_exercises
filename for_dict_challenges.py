@@ -1,18 +1,3 @@
-
-
-def name_in_class(input_students: list):
-    """
-    Функция возвращает словарь вида {Имя:счетчик}
-    """
-    name_count = {}
-    for student in input_students:
-        check_name_count = name_count.get(student['first_name'])
-        if check_name_count is None:
-            name_count[student['first_name']] = 1
-        else:
-            name_count[student['first_name']] += 1
-    return name_count
-
 # Задание 1
 # Дан список учеников, нужно посчитать количество повторений каждого имени ученика
 # Пример вывода:
@@ -28,13 +13,22 @@ students = [
     {'first_name': 'Петя'},
 ]
 
-def studens_counts(input_students: list):
-    name_count = name_in_class(input_students)
-    for name in name_count:
-        print(name, name_count[name])
+def name_in_class(input_students: list):
+    """
+    Функция возвращает словарь вида {Имя:счетчик}
+    """
+    name_count = {}
+    for student in input_students:
+        check_name_count = name_count.get(student['first_name'])
+        if check_name_count is None:
+            name_count[student['first_name']] = 1
+        else:
+            name_count[student['first_name']] += 1
+    return name_count
 
-
-studens_counts(students)
+name_and_count = name_in_class(students)
+for name in name_and_count:
+    print(f'{name}: {name_and_count[name]}')
 
 
 # Задание 2
@@ -184,3 +178,23 @@ is_male = {
 }
 
 class_boys_girls = gender_in_class(school, is_male)
+print(class_boys_girls.values())
+max_boy = {}
+max_girl = {}
+for class_num in class_boys_girls:
+    if len(max_boy) == 0 and len(max_girl) == 0:
+        max_boy[class_num] = class_boys_girls[class_num]['мальчики']
+        max_girl[class_num] = class_boys_girls[class_num]['девочки']
+        continue
+    print(max_boy.values())
+    if max_boy.values() < class_boys_girls[class_num]['мальчики']:
+        max_boy.clear()
+        max_boy[class_num] = class_boys_girls[class_num]['мальчики']
+    if max_girl.values() < class_boys_girls[class_num]['девочки']:
+        max_boy.clear()
+        max_boy[class_num] = class_boys_girls[class_num]['девочки']
+
+
+print(max_boy, max_girl)
+
+
