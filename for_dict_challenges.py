@@ -115,7 +115,7 @@ for school_class in class_and_name:
 # Класс 2б: девочки 0, мальчики 2
 
 school = [
-    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2a', 'students': [{'first_name': 'Петя'}, {'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '2б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
     {'class': '2б', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
 ]
@@ -127,17 +127,43 @@ is_male = {
     'Даша': False,
 }
 def gender_in_class(input_school_class, input_gender):
-    
-    class_boys_girls = {}
+    """
+    Функция возвращает словарь вида {класс:{мальчики:счетчик, девочки:счетчик}}
+    """
+
+
+    class_boys_girls = {}  # словарь вида {класс:{мальчики:счетчик, девочки:счетчик}}
+
     # формируем список студентов в классе
-    names = []
     for school_class in input_school_class:
-        for students in school_class['students']:
-            names.append(students['first_name'])
-    print(names)
+        # проверяем в словаре class_boys_girls наличие ключа с номером класса
+        if class_boys_girls.get(school_class['class']) is None:
+            # если класса нет в словаре то создаем
+            class_boys_girls[school_class['class']] = {'мальчики':0, 'девочки':0}
 
-gender_in_class(school, is_male)
+        for student in school_class['students']:
+            # проверяем указан ли пол для студента
+            try:
+                gender = input_gender.get(student['first_name'])
+                if gender is None:
+                    raise ValueError('пол не указан')
+            except ValueError as error:
+                print(f"Для студента {student['first_name']} {error}")
+                continue            
+            
+            if gender:
+                class_boys_girls[school_class['class']]['мальчики'] += 1
+            else:
+                class_boys_girls[school_class['class']]['девочки'] += 1
 
+    return class_boys_girls    
+
+
+class_boys_girls = gender_in_class(school, is_male)
+for class_num in class_boys_girls:
+    boys = class_boys_girls[class_num]['мальчики']
+    girls = class_boys_girls[class_num]['девочки']
+    print(f'Класс {class_num}: девочек {girls}, мальчиков {boys}')
 
 
 # Задание 5
@@ -156,5 +182,5 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
 
+class_boys_girls = gender_in_class(school, is_male)
