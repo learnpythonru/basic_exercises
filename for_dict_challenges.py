@@ -36,6 +36,7 @@ def print_names_and_count(students):
 def task1_solution(students_task1):
     print_names_and_count(students_task1)
 
+# unprint to see result of first task
 # task1_solution(students_task1)
 
 # Задание 2
@@ -65,7 +66,8 @@ def define_frequent_name(students):
 
 def task2_solution(students):
     define_frequent_name(students)
-
+    
+# unprint to see result of second task
 # task2_solution(students_task2)
 
 # Задание 3
@@ -109,6 +111,7 @@ def count_names_in_school(school_students):
 def task3_solution(school_students_task3):
     count_names_in_school(school_students_task3)
 
+# unprint to see result of third task
 # task3_solution(school_students_task3)
 
 # Задание 4
@@ -157,7 +160,8 @@ def task4_solution(school, is_male):
                 genders['female'] += 1
                 
         print(f'В классе {school_class_number}: девочки: {genders["female"]}, мальчики {genders["male"]}')
-        
+
+# unprint to see result of forth task
 # task4_solution(school_task4, is_male_task4)
 
 # Задание 5
@@ -189,7 +193,7 @@ is_male_task5 = {
     'Миша': True,
 }
 
-def test(is_male, school_task):
+def task5_solution(is_male, school_task):
     male_count = defaultdict(int)
     female_count = defaultdict(int)
     for school_class in school_task:
@@ -210,4 +214,5 @@ def test(is_male, school_task):
     print(f'Класс с самым большим количеством мальчиков: {male_class}')
     print(f'Класс с самым большим количеством девочек: {female_class}')
 
-test(is_male_task5, school_task5)
+# unprint to see result of fifth task
+# task5_solution(is_male_task5, school_task5)
