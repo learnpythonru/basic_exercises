@@ -168,7 +168,17 @@ for class_num in class_boys_girls:
 
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2b', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2b', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2b', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2b', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '3d', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
     {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
+    {'class': '3a', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}, {'first_name': 'Миша'}]},
+    {'class': '3a', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}, {'first_name': 'Миша'}]}
+    
 ]
 is_male = {
     'Маша': False,
@@ -178,23 +188,28 @@ is_male = {
 }
 
 class_boys_girls = gender_in_class(school, is_male)
-print(class_boys_girls.values())
-max_boy = {}
-max_girl = {}
+max_boy = []
+max_girl = []
+max_boy_count = 0
+max_girl_count = 0
 for class_num in class_boys_girls:
-    if len(max_boy) == 0 and len(max_girl) == 0:
-        max_boy[class_num] = class_boys_girls[class_num]['мальчики']
-        max_girl[class_num] = class_boys_girls[class_num]['девочки']
-        continue
-    print(max_boy.values())
-    if max_boy.values() < class_boys_girls[class_num]['мальчики']:
-        max_boy.clear()
-        max_boy[class_num] = class_boys_girls[class_num]['мальчики']
-    if max_girl.values() < class_boys_girls[class_num]['девочки']:
-        max_boy.clear()
-        max_boy[class_num] = class_boys_girls[class_num]['девочки']
+    # если максимальное число учеников одного пола в нескольких классах
+    if class_boys_girls[class_num]['мальчики'] == max_boy_count:
+        max_boy.append(class_num)
+    if class_boys_girls[class_num]['девочки'] == max_girl_count:
+        max_girl.append(class_num)
 
+    if class_boys_girls[class_num]['мальчики'] > max_boy_count:
+        max_boy_count = class_boys_girls[class_num]['мальчики']
+        max_boy.clear()
+        max_boy.append(class_num)
 
-print(max_boy, max_girl)
+    if class_boys_girls[class_num]['девочки'] > max_girl_count:
+        max_girl_count = class_boys_girls[class_num]['девочки']
+        max_girl.clear()
+        max_girl.append(class_num)
+
+print(f"Больше всего мальчиков в классе {', '.join(max_boy)}")
+print(f"Больше всего деовчек в классе {', '.join(max_girl)}")
 
 
