@@ -5,6 +5,7 @@
 # Маша: 2
 # Петя: 2
 
+from collections import defaultdict
 from typing import Counter
 
 
@@ -19,8 +20,9 @@ students = [
 
 names = [name['first_name'] for name in students]
 count = Counter(names)
-print(count)
-
+for name, number in count.items():
+    print(f'{name}: {number}')
+print('____')
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
 # Пример вывода:
@@ -30,21 +32,19 @@ students = [
     {'first_name': 'Петя'},
     {'first_name': 'Маша'},
     {'first_name': 'Маша'},
-    {'first_name': 'Оля'},
     {'first_name': 'Оля'}
 ]
 names_list = [name['first_name'] for name in students]
 name_count = {name: names_list.count(name) for name in names_list}
 max_count = max(name_count[name] for name in name_count)
 
-for name, count in name_count.items(): 
-    if count == max_count:
-        print(f'Самое частое имя среди учеников: {name}')
+if name_count[name] == max_count:
+    print(f'Самое частое имя среди учеников: {name}')
 
-print(Counter(name_count).most_common(1))
+# print(Counter(name_count).most_common(1))
 print(f'Самое частое имя среди учеников: {Counter(name_count).most_common(1)[0][0]}')
 
-print("------")
+
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
 # Пример вывода:
@@ -71,7 +71,7 @@ school_students = [
 
 for idx, each_class in enumerate(school_students,1):
     class_list = [name['first_name'] for name in each_class]
-    print(f'Самое частое имя среди учеников класс: {idx} {Counter(class_list).most_common(1)[0][0]}')
+    print(f'Самое частое имя среди учеников класса {idx} : {Counter(class_list).most_common(1)[0][0]}')
 
 
 # Задание 4
@@ -107,7 +107,7 @@ for class_at_school in school:
 
 
     print(f'Класс {class_at_school["class"]} : мальчики: {boys} девочки: {girls}') 
-
+print("___")
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
 # Пример вывода:
@@ -117,24 +117,38 @@ for class_at_school in school:
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
+    {'class': '4б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}, {'first_name':'Сережа'}]},
 ]
 is_male = {
     'Маша': False,
     'Оля': False,
     'Олег': True,
     'Миша': True,
+    'Сережа': True
 }
 # ???
-
+list_of_class = []
 for class_at_school in school:
+    class_genders = {'class': class_at_school['class'], 'boy': 0, 'girl': 0 }
     boys = 0
     girls = 0
+    list_of_class.append(class_genders)
     for student in class_at_school['students']:
         for name in student.values():
             if is_male[name] == True:
-                boys += 1
+                class_genders['boy'] += 1
             else: 
-                girls += 1
-print(boys)
+                class_genders['girl'] += 1
 
-# print(f'{class_at_school["class"] if }')                
+max_boys = 0
+max_girls = 0                
+for class_with_max_boys in list_of_class:
+    if class_with_max_boys['boy'] > max_boys:
+        max_boys = class_with_max_boys['boy']
+        class_max_boys = class_with_max_boys['class']
+print(f'Больше всего мальчиков в классе {class_max_boys}: {max_boys} мальчика')
+for class_with_max_girls in list_of_class:     
+    if class_with_max_girls['girl'] > max_girls:
+        max_girls = class_with_max_girls['girl']
+        class_max_girls = class_with_max_girls['class']
+print(f'Больше всего девочек в классе {class_max_girls}: {max_girls} девочек')       
