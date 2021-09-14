@@ -44,7 +44,6 @@ if name_count[name] == max_count:
 # print(Counter(name_count).most_common(1))
 print(f'Самое частое имя среди учеников: {Counter(name_count).most_common(1)[0][0]}')
 
-
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
 # Пример вывода:
