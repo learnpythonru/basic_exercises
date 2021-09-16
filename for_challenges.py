@@ -43,7 +43,7 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
     ['Оля', 'Петя', 'Гриша'],
 ]
-for (index, group) in enumerate(groups):
+for index, group in enumerate(groups):
     print(f'Группа {index + 1}: {len(group)} ученика')
 
 
@@ -58,5 +58,5 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-for (index, group) in enumerate(groups):
+for index, group in enumerate(groups):
     print(f'Группа {index + 1}: ' + ', '.join(group))

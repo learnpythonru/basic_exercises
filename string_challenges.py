@@ -24,7 +24,7 @@ print(len(sentence.split()))
 # Вывести первую букву каждого слова на отдельной строке
 sentence = 'Мы приехали в гости'
 for elem in sentence.split():
-    if len(elem) == 0:
+    if not elem:
         continue
     print(elem[0])
 
