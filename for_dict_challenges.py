@@ -36,7 +36,7 @@ names = []
 for line in students:
     names.append(line['first_name'])
 rare_name = Counter(names).most_common(1)
-rare_name = list(rare_name[0])
+rare_name = rare_name[0]
 print(f'Самое частое имя среди учеников: {rare_name[0]}')
 
 

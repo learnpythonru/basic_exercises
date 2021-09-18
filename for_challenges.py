@@ -28,7 +28,7 @@ is_male = {
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 for line in names:
-    if is_male[line] is True:
+    if is_male[line]:
         print(f'{line}: мальчик')
     else:
         print(f'{line}: девочка')
@@ -47,10 +47,8 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
 ]
 print(f'Всего {len(groups)} группы.')
-group_number = 0
-for line in groups:
-    group_number += 1
-    print(f'Группа {group_number}: {len(line)} ученика.')
+for position, line in enumerate(groups, 1):
+    print(f'Группа {position}: {len(line)} ученика.')
 
 
 print('\nЗадание 5\n')

@@ -1,3 +1,5 @@
+from collections import Counter
+
 print('Вывести последнюю букву в слове')
 word = 'Архангельск'
 print(word[-1])
@@ -10,11 +12,10 @@ print(word.lower().count('а'))
 
 print('Вывести количество гласных букв в слове')
 word = 'Архангельск'
-vowels = 0
-if word.isalpha():
-    for letter in 'аеиоуюя':
-        vowels += word.lower().count(letter)
-print(vowels)
+print('Вывести количество гласных букв в слове')
+word = 'Архангельск'
+count = Counter(word.lower())
+print(sum(count[letter] for letter in set('аеиоуюя')))
 
 print('Вывести количество слов в предложении')
 sentence = 'Мы приехали в гости'
