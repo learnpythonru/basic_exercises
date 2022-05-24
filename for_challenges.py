@@ -47,10 +47,10 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
 ]
 
-i = 0
+group_in_order = 0
 for students_amount in groups:
-    i+=1
-    print(f'Группа {i} - {len(students_amount)}')
+    group_in_order+=1
+    print(f'Группа {group_in_order} - {len(students_amount)}')
 
 # Задание 5
 # Для каждой пары учеников нужно с новой строки перечислить учеников, которые в неё входят
@@ -63,8 +63,9 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-i = 0
+
+group_in_order = 0
 delimiter = ' '
 for students_amount in groups:
-    i+=1
-    print(f'Группа {i} - {delimiter.join(students_amount)}')
+    group_in_order+=1
+    print(f'Группа {group_in_order} - {delimiter.join(students_amount)}')
